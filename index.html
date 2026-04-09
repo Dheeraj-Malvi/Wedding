@@ -170,7 +170,7 @@
     <div id="main-content-wrapper">
         <button id="music-btn" onclick="toggleMusic()">🎵</button>
         <audio id="weddingSong" loop preload="auto">
-            <source src="./songs/Sheesha.mp3" type="audio/mpeg">
+            <source src="./songs/Hawayein.mp3" type="audio/mpeg">
         </audio>
 
         <div class="hero">
@@ -283,7 +283,7 @@
 		function startExperience() {
     const s = document.getElementById("weddingSong");
     
-    // Gaana bajane ki koshish
+    // Check whether song playing
     s.play().then(() => {
         console.log("Music started successfully!");
     }).catch(e => {
