@@ -147,10 +147,19 @@
         .event-back p:first-child { color: var(--gold-solid); font-weight: 700; }
 
 		.event-back p:nth-child(2) { 
-    color: #42061d; 
-    font-weight: 400; 
+		    color: #874848; /* Dark Royal Maroon */
+		    font-weight: 600; 
+		    font-size: 1.1rem;
+		    margin: 5px 0;
 		}
-        /* --- VENUE & BLESSINGS --- */
+
+		/* 3rd paragraph (Address) ka color thoda light rakhte hain */
+		.event-back p:nth-child(3) {
+    		color: #a19494;
+    		font-size: 0.9rem;
+		}
+		
+		/* --- VENUE & BLESSINGS --- */
         .venue-section { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; padding: 80px 20px; background: #fffcf2; }
         .blessings-card, .map-card { flex: 1; min-width: 320px; max-width: 500px; background: white; padding: 40px; border: 2px solid #D4AF37; text-align: center; }
         .map-frame { width: 100%; height: 250px; border: none; border-radius: 8px; margin-bottom: 15px; }
@@ -205,7 +214,8 @@
                 <div class="event-inner">
                     <div class="event-front"><h3>Haldi</h3></div>
                     <div class="event-back">
-                        <p>APRIL 24, 2026 (Morning)</p>
+                        <p>APRIL 24, 2026</p>
+                        <p>(Morning)</p>
                         <p>Khapa Khateda, Amla</p>
                     </div>
                 </div>
@@ -215,7 +225,8 @@
                 <div class="event-inner">
                     <div class="event-front"><h3>Mehendi</h3></div>
                     <div class="event-back">
-                        <p>APRIL 25, 2026 (Evening)</p>
+                        <p>APRIL 25, 2026</p>
+                        <p>(Evening)</p>
                         <p>Khapa Khateda, Amla</p>
                     </div>
                 </div>
@@ -225,7 +236,8 @@
                 <div class="event-inner">
                     <div class="event-front"><h3>Sangeet Night</h3></div>
                     <div class="event-back">
-                        <p>APRIL 25, 2026 (Evening)</p>
+                        <p>APRIL 25, 2026</p>
+                        <p>(Evening)</p>
                         <p>Khapa Khateda, Amla</p>
                     </div>
                 </div>
@@ -235,7 +247,8 @@
                 <div class="event-inner">
                     <div class="event-front"><h3>The Royal Wedding</h3></div>
                     <div class="event-back">
-                        <p>APRIL 26, 2026 (Evening)</p>
+                        <p>APRIL 26, 2026/p>
+                        <p>(Evening)</p>
                         <p>Gram Khapa Khateda, Amla</p>
                     </div>
                 </div>
@@ -280,15 +293,15 @@
             }, 1200);
         }*/
 
-		function startExperience() {
-    const s = document.getElementById("weddingSong");
+	function startExperience() {
+		const s = document.getElementById("weddingSong");
     
-    // Check whether song playing
-    s.play().then(() => {
-        console.log("Music started successfully!");
-    }).catch(e => {
-        console.error("Music play failed:", e);
-    });
+		// Check whether song playing
+		s.play().then(() => {
+		console.log("Music started successfully!");
+		}).catch(e => {
+		console.error("Music play failed:", e);
+	});
 
     const overlay = document.getElementById("entry-overlay");
     overlay.style.transform = "translateY(-100%)";
