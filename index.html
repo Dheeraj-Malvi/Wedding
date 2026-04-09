@@ -169,8 +169,8 @@
 
     <div id="main-content-wrapper">
         <button id="music-btn" onclick="toggleMusic()">🎵</button>
-        <audio id="weddingSong" loop>
-            <source src="songs/hawayein.mp3" type="audio/mpeg">
+        <audio id="weddingSong" loop preload="auto">
+            <source src="./songs/hawayein.mp3" type="audio/mpeg">
         </audio>
 
         <div class="hero">
@@ -263,7 +263,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        function startExperience() {
+      /*  function startExperience() {
             document.getElementById("weddingSong").play().catch(e => {});
             const overlay = document.getElementById("entry-overlay");
             overlay.style.transform = "translateY(-100%)";
@@ -278,7 +278,34 @@
                 document.getElementById("main-body").style.overflowY = "auto";
                 window.scrollTo(0, 0);
             }, 1200);
-        }
+        }*/
+
+		function startExperience() {
+    const s = document.getElementById("weddingSong");
+    
+    // Gaana bajane ki koshish
+    s.play().then(() => {
+        console.log("Music started successfully!");
+    }).catch(e => {
+        console.error("Music play failed:", e);
+    });
+
+    const overlay = document.getElementById("entry-overlay");
+    overlay.style.transform = "translateY(-100%)";
+    overlay.style.opacity = "0";
+    
+    const content = document.getElementById("main-content-wrapper");
+    content.classList.add("reveal-clear");
+
+    setTimeout(() => {
+        AOS.init({ duration: 1200, once: false });
+        overlay.style.display = "none";
+        document.getElementById("main-body").style.overflowY = "auto";
+        window.scrollTo(0, 0);
+    }, 1200);
+}
+
+		
 
         function toggleMusic() {
             const s = document.getElementById("weddingSong");
