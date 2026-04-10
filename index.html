@@ -106,6 +106,7 @@
             height: 220px;
             margin-bottom: 30px;
             cursor: pointer;
+			-webkit-tap-highlight-color: transparent; /* Mobile fix */
         }
 
         .event-inner {
@@ -116,7 +117,6 @@
         }
 
         /* Hover & Flipped logic */
-        .event-card:hover .event-inner, 
         .event-card.flipped .event-inner {
             transform: rotateY(180deg);
         }
@@ -131,6 +131,8 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border-top: 4px solid var(--gold-solid);
             background: white;
+			box-sizing: border-box;
+    		padding: 20px;
         }
 
         .event-front h3, .event-back h3 {
@@ -213,7 +215,7 @@
         <div class="details-container">
             <h2 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--royal-red); margin-bottom: 40px;" data-aos="fade-up">Wedding Itinerary</h2>
 
-            <div class="event-card" onclick="this.classList.toggle('flipped')" data-aos="fade-up">
+            <div class="event-card" data-aos="fade-up">
                 <div class="event-inner">
                     <div class="event-front"><h3>Haldi</h3></div>
                     <div class="event-back">
@@ -224,7 +226,7 @@
                 </div>
             </div>
 
-            <div class="event-card" onclick="this.classList.toggle('flipped')" data-aos="fade-up">
+            <div class="event-card" data-aos="fade-up">
                 <div class="event-inner">
                     <div class="event-front"><h3>Mehendi</h3></div>
                     <div class="event-back">
@@ -235,7 +237,7 @@
                 </div>
             </div>
 
-            <div class="event-card" onclick="this.classList.toggle('flipped')" data-aos="fade-up">
+            <div class="event-card" data-aos="fade-up">
                 <div class="event-inner">
                     <div class="event-front"><h3>Sangeet Night</h3></div>
                     <div class="event-back">
@@ -246,7 +248,7 @@
                 </div>
             </div>
 
-            <div class="event-card" onclick="this.classList.toggle('flipped')" data-aos="fade-up">
+            <div class="event-card" data-aos="fade-up">
                 <div class="event-inner">
                     <div class="event-front"><h3>The Royal Wedding</h3></div>
                     <div class="event-back">
@@ -313,22 +315,44 @@
     const content = document.getElementById("main-content-wrapper");
     content.classList.add("reveal-clear");
 
-    setTimeout(() => {
-        AOS.init({ duration: 1200, once: false });
-        overlay.style.display = "none";
-        document.getElementById("main-body").style.overflowY = "auto";
-        window.scrollTo(0, 0);
-    }, 1200);
-}
+   	 setTimeout(() => {
+    	    AOS.init({ duration: 1200, once: false });
+        	overlay.style.display = "none";
+        	document.getElementById("main-body").style.overflowY = "auto";
+        	window.scrollTo(0, 0);
+    	}, 1200);
+		}
 
 		
 
-        function toggleMusic() {
+    	function toggleMusic() {
             const s = document.getElementById("weddingSong");
             const b = document.getElementById("music-btn");
             if (s.paused) { s.play(); b.innerText = "🎶"; } 
             else { s.pause(); b.innerText = "🔇"; }
         } 
+
+		document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.event-card');
+        cards.forEach(card => {
+            // Desktop Hover
+            card.addEventListener('mouseenter', () => card.classList.add('flipped'));
+            card.addEventListener('mouseleave', () => card.classList.remove('flipped'));
+            
+            // Click/Touch Toggle
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                cards.forEach(c => { if (c !== card) c.classList.remove('flipped'); });
+                card.classList.toggle('flipped');
+            });
+        });
+
+        // flip back on outer click
+        document.addEventListener('click', () => {
+            cards.forEach(card => card.classList.remove('flipped'));
+        });
+    });
+		
     </script>
 </body>
 </html>
