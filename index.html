@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𝓒𝓱𝓮𝓽𝓪𝓷 𝓢 𝓡𝓾𝓴𝓶𝓪𝓷𝓲 | 𝓣𝓱𝓮 𝓦𝓮𝓭𝓭𝓲𝓷𝓰</title>
+    <title>𝓒𝓱𝓮𝓽𝓪𝓷 𝓢 𝓡𝓾𝓴𝓶𝓪𝓷𝓲 💝 𝓣𝓱𝓮 𝓦𝓮𝓭𝓭𝓲𝓷𝓰</title>
 	<link rel="icon" type="image/x-icon" href="/img/favicon.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -150,13 +150,12 @@
         .event-back p:first-child { color: var(--gold-solid); font-weight: 700; }
 
 		.event-back p:nth-child(2) { 
-		    color: #874848; /* Dark Royal Maroon */
+		    color: #874848;
 		    font-weight: 600; 
 		    font-size: 1.1rem;
 		    margin: 5px 0;
 		}
 
-		/* 3rd paragraph (Address) ka color thoda light rakhte hain */
 		.event-back p:nth-child(3) {
     		color: #a19494;
     		font-size: 0.9rem;
@@ -170,7 +169,35 @@
         
         #music-btn { position: fixed !important; bottom: 20px !important; right: 20px !important; z-index: 9999 !important; font-size: 24px; cursor: pointer; background: white; border: 2px solid var(--gold-solid); width: 50px; height: 50px; border-radius: 50%; display: flex;
     justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-    </style>
+  
+	 @media (max-width: 768px) {
+	    .venue-section {
+	        padding: 30px 10px; 
+	        gap: 20px;
+	        flex-direction: column;
+	        align-items: center;
+	    }
+	
+	    .blessings-card, .map-card {
+	        min-width: 0 !important; 
+	        width: 100% !important; 
+	        max-width: 95vw;
+	        padding: 25px 15px; 
+	        box-sizing: border-box;
+	        margin: 0 auto;
+	    }
+	
+	    .map-frame {
+	        width: 100%;
+	        height: 250px;
+	    }
+	
+	    .names-shine {
+	        font-size: 3rem;
+	    }
+	}
+		
+	</style>
 </head>
 <body style="overflow: hidden;" id="main-body">
     
@@ -281,27 +308,10 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      /*  function startExperience() {
-            document.getElementById("weddingSong").play().catch(e => {});
-            const overlay = document.getElementById("entry-overlay");
-            overlay.style.transform = "translateY(-100%)";
-            overlay.style.opacity = "0";
-            
-            const content = document.getElementById("main-content-wrapper");
-            content.classList.add("reveal-clear");
-
-            setTimeout(() => {
-                AOS.init({ duration: 1200, once: false });
-                overlay.style.display = "none";
-                document.getElementById("main-body").style.overflowY = "auto";
-                window.scrollTo(0, 0);
-            }, 1200);
-        }*/
 
 	function startExperience() {
 		const s = document.getElementById("weddingSong");
     
-		// Check whether song playing
 		s.play().then(() => {
 		console.log("Music started successfully!");
 		}).catch(e => {
@@ -357,31 +367,11 @@
         }
     });
 
-    // Bahar click karne par saare cards band (sirf mobile ke liye zyada useful)
     document.addEventListener('click', () => {
         cards.forEach(card => card.classList.remove('flipped'));
     });
 });
-		
-       /* cards.forEach(card => {
-            // Desktop Hover
-            card.addEventListener('mouseenter', () => card.classList.add('flipped'));
-            card.addEventListener('mouseleave', () => card.classList.remove('flipped'));
-            
-            // Click/Touch Toggle
-            card.addEventListener('click', (e) => {
-                e.stopPropagation();
-                cards.forEach(c => { if (c !== card) c.classList.remove('flipped'); });
-                card.classList.toggle('flipped');
-            });
-        });
 
-        // flip back on outer click
-        document.addEventListener('click', () => {
-            cards.forEach(card => card.classList.remove('flipped'));
-        });
-    });*/
-		
     </script>
 	<script defer src="/_vercel/insights/script.js"></script>
 </body>
