@@ -42,13 +42,41 @@
         #entry-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, #ffffff 0%, #f3e5d8 100%);
+           /* background: radial-gradient(circle, #ffffff 0%, #f3e5d8 100%);*/
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 9999;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
-            text-align: center;
+       	  /*transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
+            text-align: center;*/
+			overflow: hidden;
         }
 
+		/* Dono pardo ki common styling */
+		.curtain-side {
+		    position: absolute;
+		    top: 0;
+		    width: 50%;
+		    height: 100%;
+		    background: radial-gradient(circle, #ffffff 0%, #f3e5d8 100%); /* Tumhara purana color theme */
+		    transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+		    z-index: 1;
+		}
+
+		.left-curtain { left: 0; border-right: 1px solid rgba(212, 175, 55, 0.3); }
+		.right-curtain { right: 0; border-left: 1px solid rgba(212, 175, 55, 0.3); }
+
+		/* Buttons aur names pardo ke beech mein */
+		.overlay-content {
+		    position: relative;
+		    z-index: 2;
+		    text-align: center;
+		    transition: opacity 0.8s ease, transform 0.8s ease;
+		}
+		
+		/* Jab parda khulega tab ye classes trigger hongi */
+		#entry-overlay.open .left-curtain { transform: translateX(-100%); }
+		#entry-overlay.open .right-curtain { transform: translateX(100%); }
+		#entry-overlay.open .overlay-content { opacity: 0; transform: scale(0.8); pointer-events: none; }
+		
         .names-shine {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(3.5rem, 15vw, 6.5rem);
@@ -204,9 +232,13 @@
 	<button id="music-btn" onclick="toggleMusic()">🎵</button>
 
     <div id="entry-overlay">
-        <p style="letter-spacing: 5px; color: #8E8E8E;">YOU ARE INVITED TO THE WEDDING OF</p>
-        <h1 class="names-shine">Chetan & Rukmani</h1>
-        <button class="open-btn" onclick="startExperience()">OPEN INVITATION</button>
+		<div class="curtain-side left-curtain"></div>
+	    <div class="curtain-side right-curtain"></div>
+			<div>
+		        <p style="letter-spacing: 5px; color: #8E8E8E;">YOU ARE INVITED TO THE WEDDING OF</p>
+		        <h1 class="names-shine">Chetan & Rukmani</h1>
+		        <button class="open-btn" onclick="startExperience()">OPEN INVITATION</button>
+	    	</div>
     </div>
 
     <div id="main-content-wrapper">
@@ -342,8 +374,9 @@
 	});
 
     const overlay = document.getElementById("entry-overlay");
-    overlay.style.transform = "translateY(-100%)";
-    overlay.style.opacity = "0";
+
+	// Parda kholne wali class add karo
+    overlay.classList.add("open");
     
     const content = document.getElementById("main-content-wrapper");
     content.classList.add("reveal-clear");
@@ -353,7 +386,7 @@
         	overlay.style.display = "none";
         	document.getElementById("main-body").style.overflowY = "auto";
         	window.scrollTo(0, 0);
-    	}, 1200);
+    	}, 1500);
 		}
 
 		
