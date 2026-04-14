@@ -42,12 +42,41 @@
         #entry-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, #ffffff 0%, #f3e5d8 100%);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 9999;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
-            text-align: center;
+			overflow: hidden;
         }
+
+		.curtain-side {
+		    position: absolute;
+		    top: 0;
+		    width: 50%;
+		    height: 100%;
+		    background: radial-gradient(circle, #911d29 0%, #751521 100%);
+		    transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+		    z-index: 1; /* Parda level 1 par */
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+		}
+
+		.left-curtain { left: 0;}
+		.right-curtain { right: 0;}
+
+		.overlay-content {
+		    position: relative;
+		    z-index: 10;
+		    text-align: center;
+		    transition: opacity 0.8s ease, transform 0.8s ease;
+		}
+		
+        
+      #entry-overlay.open .left-curtain { transform: translateX(-100%); }
+      #entry-overlay.open .right-curtain { transform: translateX(100%); }
+
+      #entry-overlay.open .overlay-content { 
+          opacity: 0; 
+          transform: scale(0.6);
+          pointer-events: none;
+      }
 
         .names-shine {
             font-family: 'Great Vibes', cursive;
@@ -99,12 +128,18 @@
         }
 
         /* --- ITINERARY FLIP CARDS --- */
-        .details-container { padding: 40px 20px; max-width: 800px; margin: 0 auto; text-align: center; }
-        
+        .details-container { padding: 40px 20px; max-width: 1100px; margin: 0 auto; text-align: center; }
+
+		.itinerary-grid {
+		    display: grid;
+		    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /*magic line*/
+		    gap: 30px;
+		    padding: 20px;
+		}
         .event-card {
             perspective: 1200px;
-            height: 220px;
-            margin-bottom: 30px;
+            height: 250px;
+            margin-bottom: 0px;
             cursor: pointer;
 			-webkit-tap-highlight-color: transparent; /* Mobile fix */
         }
@@ -204,9 +239,13 @@
 	<button id="music-btn" onclick="toggleMusic()">🎵</button>
 
     <div id="entry-overlay">
-        <p style="letter-spacing: 5px; color: #8E8E8E;">YOU ARE INVITED TO THE WEDDING OF</p>
-        <h1 class="names-shine">Chetan & Rukmani</h1>
-        <button class="open-btn" onclick="startExperience()">OPEN INVITATION</button>
+		<div class="curtain-side left-curtain"></div>
+	    <div class="curtain-side right-curtain"></div>
+			<div class="overlay-content">
+		        <p style="letter-spacing: 5px;  color: #fcf6ba; font-weight: 600;">YOU ARE INVITED TO THE WEDDING OF</p>
+		        <h1 class="names-shine">Chetan & Rukmani</h1>
+		        <button class="open-btn" onclick="startExperience()">OPEN INVITATION</button>
+	    	</div>
     </div>
 
     <div id="main-content-wrapper">
@@ -242,73 +281,74 @@
         <div class="details-container">
             <h2 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--royal-red); margin-bottom: 40px;" data-aos="fade-up">Wedding Itinerary</h2>
 
-			
-            <div class="event-card" data-aos="fade-up">
-                <div class="event-inner">
-                    <div class="event-front"><h3>Khan Matti</h3></div>
-                    <div class="event-back">
-                        <p>APRIL 22, 2026</p>
-                        <p>(Morning, 9 AM)</p>
-                        <p>Khapa Khateda, Amla</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="event-card" data-aos="fade-up">
-                <div class="event-inner">
-                    <div class="event-front"><h3>Mandha</h3></div>
-                    <div class="event-back">
-                        <p>APRIL 24, 2026</p>
-                        <p>(Morning, 9 AM)</p>
-                        <p>Khapa Khateda, Amla</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="event-card" data-aos="fade-up">
-                <div class="event-inner">
-                    <div class="event-front"><h3>Haldi</h3></div>
-                    <div class="event-back">
-                        <p>APRIL 24, 2026</p>
-                        <p>(Morning)</p>
-                        <p>Khapa Khateda, Amla</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="event-card" data-aos="fade-up">
-                <div class="event-inner">
-                    <div class="event-front"><h3>Mehendi</h3></div>
-                    <div class="event-back">
-                        <p>APRIL 25, 2026</p>
-                        <p>(Evening)</p>
-                        <p>Khapa Khateda, Amla</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="event-card" data-aos="fade-up">
-                <div class="event-inner">
-                    <div class="event-front"><h3>Sangeet Night</h3></div>
-                    <div class="event-back">
-                        <p>APRIL 25, 2026</p>
-                        <p>(Evening)</p>
-                        <p>Khapa Khateda, Amla</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="event-card" data-aos="fade-up">
-                <div class="event-inner">
-                    <div class="event-front"><h3>The Royal Wedding</h3></div>
-                    <div class="event-back">
-                        <p>APRIL 26, 2026</p>
-                        <p>(Evening, 9 PM)</p>
-                        <p>Gram Khapa Khateda, Amla</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<div class="itinerary-grid">
+	            <div class="event-card" data-aos="fade-up">
+	                <div class="event-inner">
+	                    <div class="event-front"><h3>Khan Matti</h3></div>
+	                    <div class="event-back">
+	                        <p>APRIL 22, 2026</p>
+	                        <p>(Morning, 9 AM)</p>
+	                        <p>Khapa Khateda, Amla</p>
+	                    </div>
+	                </div>
+	            </div>
+	            
+	            <div class="event-card" data-aos="fade-up">
+	                <div class="event-inner">
+	                    <div class="event-front"><h3>Mandha</h3></div>
+	                    <div class="event-back">
+	                        <p>APRIL 24, 2026</p>
+	                        <p>(Morning, 9 AM)</p>
+	                        <p>Khapa Khateda, Amla</p>
+	                    </div>
+	                </div>
+	            </div>
+	
+	            <div class="event-card" data-aos="fade-up">
+	                <div class="event-inner">
+	                    <div class="event-front"><h3>Haldi</h3></div>
+	                    <div class="event-back">
+	                        <p>APRIL 24, 2026</p>
+	                        <p>(Morning)</p>
+	                        <p>Khapa Khateda, Amla</p>
+	                    </div>
+	                </div>
+	            </div>
+	
+	            <div class="event-card" data-aos="fade-up">
+	                <div class="event-inner">
+	                    <div class="event-front"><h3>Mehendi</h3></div>
+	                    <div class="event-back">
+	                        <p>APRIL 25, 2026</p>
+	                        <p>(Evening)</p>
+	                        <p>Khapa Khateda, Amla</p>
+	                    </div>
+	                </div>
+	            </div>
+	
+	            <div class="event-card" data-aos="fade-up">
+	                <div class="event-inner">
+	                    <div class="event-front"><h3>Sangeet Night</h3></div>
+	                    <div class="event-back">
+	                        <p>APRIL 25, 2026</p>
+	                        <p>(Evening)</p>
+	                        <p>Khapa Khateda, Amla</p>
+	                    </div>
+	                </div>
+	            </div>
+	
+	            <div class="event-card" data-aos="fade-up">
+	                <div class="event-inner">
+	                    <div class="event-front"><h3>The Royal Wedding</h3></div>
+	                    <div class="event-back">
+	                        <p>APRIL 26, 2026</p>
+	                        <p>(Evening, 9 PM)</p>
+	                        <p>Gram Khapa Khateda, Amla</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+		</div>	
 
         <section class="venue-section">
             <div class="blessings-card" data-aos="fade-right">
@@ -342,8 +382,9 @@
 	});
 
     const overlay = document.getElementById("entry-overlay");
-    overlay.style.transform = "translateY(-100%)";
-    overlay.style.opacity = "0";
+
+    // **Naya Trigger:** Sirf naya class lagao
+    overlay.classList.add("open"); // Yeh CSS trigger karega (beeche se split hona)
     
     const content = document.getElementById("main-content-wrapper");
     content.classList.add("reveal-clear");
@@ -353,7 +394,7 @@
         	overlay.style.display = "none";
         	document.getElementById("main-body").style.overflowY = "auto";
         	window.scrollTo(0, 0);
-    	}, 1200);
+    	}, 1500);
 		}
 
 		
@@ -382,7 +423,7 @@
                 if (card.classList.contains('flipped')) {
                     card.classList.remove('flipped');
                 } else {
-                    // Baaki cards band karo aur ise kholo
+                    // Close other cards and open this
                     cards.forEach(c => c.classList.remove('flipped'));
                     card.classList.add('flipped');
                 }
