@@ -134,13 +134,16 @@
 
 		.itinerary-grid {
 		    display: grid;
-		    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /*magic line*/
-		    gap: 30px;
-		    padding: 20px;
+		    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /*magic line*/
+		    gap: 20px;
+		    padding: 10px;
+			width: 100%;
+		    box-sizing: border-box;
 		}
         .event-card {
             perspective: 1200px;
-            height: 250px;
+            height: 220px;
+			width: 100%;
             margin-bottom: 0px;
             cursor: pointer;
 			-webkit-tap-highlight-color: transparent; /* Mobile fix */
@@ -169,6 +172,7 @@
             border-top: 4px solid var(--gold-solid);
             background: white;
 			box-sizing: border-box;
+			overflow: hidden; /* Content bahar na nikalne paye */
     		padding: 20px;
         }
 
