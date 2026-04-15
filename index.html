@@ -103,8 +103,10 @@
         .hero {
             height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('img/propose.png') no-repeat center 30%/cover;
+			background-size: cover;
+    color: white;
             color: white; text-align: center;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
         }
@@ -132,13 +134,16 @@
 
 		.itinerary-grid {
 		    display: grid;
-		    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /*magic line*/
-		    gap: 30px;
-		    padding: 20px;
+		    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /*magic line*/
+		    gap: 20px;
+		    padding: 10px;
+			width: 100%;
+		    box-sizing: border-box;
 		}
         .event-card {
             perspective: 1200px;
-            height: 250px;
+            height: 220px;
+			width: 100%;
             margin-bottom: 0px;
             cursor: pointer;
 			-webkit-tap-highlight-color: transparent; /* Mobile fix */
@@ -167,6 +172,7 @@
             border-top: 4px solid var(--gold-solid);
             background: white;
 			box-sizing: border-box;
+			overflow: hidden; /* Content bahar na nikalne paye */
     		padding: 20px;
         }
 
@@ -206,6 +212,10 @@
     justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
   
 	 @media (max-width: 768px) {
+		 .hero {
+	        background-position: center center; /* Mobile par wapis beech mein kar do */
+	    }
+		 
 	    .venue-section {
 	        padding: 30px 10px; 
 	        gap: 20px;
@@ -250,7 +260,7 @@
 
     <div id="main-content-wrapper">
         <audio id="weddingSong" loop preload="auto">
-            <source src="./songs/wedding-song.mp3" type="audio/mpeg">
+            <source src="./songs/ye-zamee-aasman.mp3" type="audio/mpeg">
         </audio>
 
         <div class="hero">
@@ -263,11 +273,11 @@
             <h2 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--royal-red); margin-bottom: 50px;">Our Story</h2>
             <div class="story-container">
                 <div class="couple-profile" data-aos="fade-left">
-                    <img src="img/bride.png" alt="Rukmani" class="profile-img">
+                    <img src="img/rukk.png" alt="Rukmani" class="profile-img">
                     <h3 class="couple-name">Rukmani</h3>
                 </div>
                 <div class="couple-profile" data-aos="fade-right">
-                    <img src="img/groom.png" alt="Chetan" class="profile-img">
+                    <img src="img/chet.png" alt="Chetan" class="profile-img">
                     <h3 class="couple-name">Chetan</h3>
                 </div>
             </div>
